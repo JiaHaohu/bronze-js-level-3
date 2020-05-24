@@ -31,11 +31,66 @@
 export default function createMultiplyTable (options) {
   // TODO: Please implement this function.
   // <--start--
+  if (options === undefined) {
+    // eslint-disable-next-line no-throw-literal
+    throw 'Error';
+  }
 
+  if (options.start === undefined || options.end === undefined) {
+    // eslint-disable-next-line no-throw-literal
+    throw 'Error';
+  }
+
+  const start = options.start;
+  const end = options.end;
+
+  if (start <= 0 || end <= 0) {
+    // eslint-disable-next-line no-throw-literal
+    throw 'Error';
+  }
+
+  if (start > end) {
+    // eslint-disable-next-line no-throw-literal
+    throw 'Error';
+  }
+
+  // eslint-disable-next-line no-unused-vars
+  var result = '';
+
+  for (let row = start; row <= end; row++) {
+    result += createRow(start, end, row);
+  }
+
+  return result;
   // --end-->
 }
 
 // TODO: You can add additional functions if needed.
 // <--start--
 
+function createRow (start, end, row) {
+  var rowStr = '';
+
+  for (let column = start; column <= row; column++) {
+    rowStr += createCell(row, column, end);
+  }
+  rowStr += '\n';
+
+  return rowStr;
+}
+
+function createCell (row, column, end) {
+  var expression = `${row}*${column}=` + row * column;
+  const cellWidth = getCellWidth(column, end);
+  // eslint-disable-next-line no-undef
+  const resultCell = expression + ' '.repeat(cellWidth - expression.length);
+
+  // eslint-disable-next-line no-undef
+  return resultCell;
+}
+
+function getCellWidth (column, end) {
+  const maxLengthExpression = `${end}*${column}=` + column * end;
+  return maxLengthExpression.length + 2;
+}
 // --end-->

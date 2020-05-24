@@ -34,6 +34,7 @@ describe('when creating multiply table', () => {
   it('should print single expression', () => {
     const table = createMultiplyTable({ start: 3, end: 3 });
     const expected = '3*3=9  \n';
+
     expect(table).toStrictEqual(expected);
   });
 
@@ -43,7 +44,6 @@ describe('when creating multiply table', () => {
       '1*1=1  \n' +
       '2*1=2  2*2=4  \n' +
       '3*1=3  3*2=6  3*3=9  \n';
-
     expect(table).toStrictEqual(expected);
   });
 
